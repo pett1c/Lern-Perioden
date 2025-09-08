@@ -39,19 +39,19 @@ Heute habe ich mich als Erstes daran gemacht, lustige Artikel auf Absurdopedia z
 
 ## 05.9
 
-- [ ] Als Entwickler möchte ich den Code für „Weiterführer“ in Python unter Verwendung von ***markovify*** schreiben, um die Generierung absurder Texte auf der Grundlage des Korpus zu realisieren.
-- [ ] Als Nutzer möchte ich, dass „Weiterführer“ direkt auf der Website über PyScript und ***markovify*** funktioniert, um sofortige und lustige Textfortsetzungen zu erhalten.
-- [ ] Als Entwickler möchte ich einen ersten Test von „Weiterführer“ durchführen, um sicherzustellen, dass es sinnvolle und unterhaltsame Textfortsetzungen generiert.
-- [ ] Als Entwickler möchte ich mögliche Fehler, Bugs und Unvollkommenheiten, die während des ersten Testlaufs auftreten, beheben, damit die erste Version des Produkts stabil läuft und dem Nutzer die volle Grundfunktionalität von „Weiterführer” bietet.
+- [x] Als Entwickler möchte ich den Code für „Weiterführer“ in Python unter Verwendung von ***markovify*** schreiben, um die Generierung absurder Texte auf der Grundlage des Korpus zu realisieren.
+- [x] Als Nutzer möchte ich, dass „Weiterführer“ direkt auf der Website über PyScript und ***markovify*** funktioniert, um sofortige und lustige Textfortsetzungen zu erhalten.
+- [x] Als Entwickler möchte ich einen ersten Test von „Weiterführer“ durchführen, um sicherzustellen, dass es sinnvolle und unterhaltsame Textfortsetzungen generiert.
+- [x] Als Entwickler möchte ich mögliche Fehler, Bugs und Unvollkommenheiten, die während des ersten Testlaufs auftreten, beheben, damit die erste Version des Produkts stabil läuft und dem Nutzer die volle Grundfunktionalität von „Weiterführer” bietet.
 
-...
+Obwohl mein Laptop am Donnerstag kaputt gegangen ist, konnte ich die Logik von „Weiterführer“ dennoch umsetzen. Der Einfachheit halber bin ich jedoch von ***PyScript*** zu ***Pyodide*** gewechselt, da ich nur mit ***Pyodide*** die Integration der Logik direkt in `.html` realisieren konnte. Ausserdem habe ich einen kleinen Test durchgeführt und festgestellt, dass die Grundfunktionalität in Form einer Textfortsetzung vorhanden ist, aber bisher völlig sinnlos ist (absurde Fortsetzung != sinnlose Fortsetzung). Deshalb werde ich mich bei der nächsten Sitzung in erster Linie damit beschäftigen.
 
 ## 12.9
 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Als Nutzer möchte ich, dass der generierte Text im Zusammenhang mit meiner Eingabe Sinn und Logik ergibt, damit ich qualitativ hochwertigere Fortsetzungen meiner Geschichten erhalten kann.
+- [ ] Als Nutzer möchte ich, dass der Algorithmus zur Textgenerierung logischere und sinnvollere Fortsetzungen erstellt, damit meine Geschichten interessant und qualitativ hochwertig sind.
+- [ ] Als Nutzer möchte ich zusätzliche Einstellungen zur Kontrolle der Fortsetzungsgenerierung haben, damit ich die Fortsetzungen nach meinen Vorlieben anpassen kann.
+- [ ] Als Nutzer möchte ich, dass die Anwendung Fortsetzungen sowohl auf Russisch auf der Grundlage von **Absurdopedia** als auch auf Deutsch auf der Grundlage von **Stupidedia *(und anderen)*** generieren kann, damit ich Geschichten sowohl auf Russisch als auch auf Deutsch erstellen kann.
 
 ...
 

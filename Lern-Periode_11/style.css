@@ -126,7 +126,7 @@ h1 {
     margin-bottom: 30px;
 }
 
-#text-input {
+.input-area {
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -136,22 +136,28 @@ h1 {
     font-size: 1.1rem;
     font-family: inherit;
     color: #ffffff;
-    resize: vertical;
     min-height: 200px;
+    white-space: pre-wrap;
+    overflow-y: auto;
     transition: all 0.3s ease;
     outline: none;
     line-height: 1.6;
 }
 
-#text-input::placeholder {
+.input-area:empty:before {
+    content: attr(placeholder);
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
 }
 
-#text-input:focus {
+.input-area:focus {
     border-color: #4ecdc4;
     box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
     transform: translateY(-2px);
+}
+
+.new-text {
+    color: #4ecdc4; /* Цвет для сгенерированного текста */
 }
 
 .continue-button {
@@ -215,11 +221,6 @@ h1 {
     display: none;
 }
 
-/* Анимация для нового текста */
-.new-text {
-    animation: fadeIn 0.8s ease-in-out;
-}
-
 @keyframes fadeIn {
     from { 
         opacity: 0; 
@@ -231,7 +232,6 @@ h1 {
     }
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .container {
         padding: 20px 15px;
@@ -261,7 +261,7 @@ h1 {
         min-width: auto;
     }
     
-    #text-input {
+    .input-area {
         padding: 20px;
         font-size: 1rem;
         min-height: 150px;

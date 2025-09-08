@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Продолжатор текста</title>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Продолжатор текста</h1>
-        
+        <h1>Продолжатор</h1>
         <div class="controls">
             <div class="slider-container">
                 <label for="length-slider">Длина продолжения [слов]</label>
-                <input type="range" id="length-slider" min="5" max="50" value="20" step="5">
+                <input type="range" id="length-slider" min="10" max="100" value="20">
                 <span id="length-value">20</span>
             </div>
+            <div class="input-container">
+                <div id="text-input" contenteditable="true" class="input-area" placeholder="Введите текст..."></div>
+            </div>
+            <button id="continue-button" class="continue-button">Продолжить</button>
+            <div id="loading" class="loading hidden">Генерирую продолжение...</div>
         </div>
-
-        <div class="input-container">
-            <textarea 
-                id="text-input" 
-                placeholder="Введите первое особое сочетание гласных и согласных звуков..."
-                rows="8"
-            ></textarea>
-        </div>
-
-        <button id="continue-btn" class="continue-button">Продолжатор</button>
-
-        <div id="loading" class="loading hidden">Генерирую продолжение...</div>
     </div>
-
-    <py-script src="main.py"></py-script>
+    <script>
+        async function main() {
+            let pyodide = await loadPyodide();
+            await pyodide.loadPackage("micropip");
+            const micropip = pyodide.pyimport("micropip");
+            await micropip.install("markovify");
+            //await micropip.install("pyodide.http")
+            await pyodide.runPythonAsync(await (await fetch("./main.py")).text());
+        }
+        main();
+    </script>
 </body>
 </html>
