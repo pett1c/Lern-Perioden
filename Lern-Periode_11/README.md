@@ -48,19 +48,19 @@ Obwohl mein Laptop am Donnerstag kaputt gegangen ist, konnte ich die Logik von �
 
 ## 12.9
 
-- [ ] Als Nutzer möchte ich, dass der generierte Text im Zusammenhang mit meiner Eingabe Sinn und Logik ergibt, damit ich qualitativ hochwertigere Fortsetzungen meiner Geschichten erhalten kann.
-- [ ] Als Nutzer möchte ich, dass der Algorithmus zur Textgenerierung logischere und sinnvollere Fortsetzungen erstellt, damit meine Geschichten interessant und qualitativ hochwertig sind.
+- [x] Als Nutzer möchte ich, dass der generierte Text im Zusammenhang mit meiner Eingabe Sinn und Logik ergibt, damit ich qualitativ hochwertigere Fortsetzungen meiner Geschichten erhalten kann.
+- [x] Als Nutzer möchte ich, dass der Algorithmus zur Textgenerierung logischere und sinnvollere Fortsetzungen erstellt, damit meine Geschichten interessant und qualitativ hochwertig sind.
 - [ ] Als Nutzer möchte ich zusätzliche Einstellungen zur Kontrolle der Fortsetzungsgenerierung haben, damit ich die Fortsetzungen nach meinen Vorlieben anpassen kann.
 - [ ] Als Nutzer möchte ich, dass die Anwendung Fortsetzungen sowohl auf Russisch auf der Grundlage von **Absurdopedia** als auch auf Deutsch auf der Grundlage von **Stupidedia *(und anderen)*** generieren kann, damit ich Geschichten sowohl auf Russisch als auch auf Deutsch erstellen kann.
 
-...
+Heute habe ich mich als Erstes damit beschäftigt, den Output des Fortsetzers zu verbessern. Auf Anraten der KI habe ich zunächst die Grösse des Korpus erhöht (von fast 350.000 auf 1.000.000) und mich dann mit der Überarbeitung des Codes selbst befasst. Leider habe ich etwas Zeit gebraucht, um zu verstehen, dass ein vollwertiges neuronales Netzwerk besser für das ursprüngliche Ziel des Projekts geeignet ist als ein einfacher Text-Fortsetzer, aber da ich nur wenig Zeit habe, habe ich mich entschlossen, weiter mit Markovify zu arbeiten. Das Problem mit der Logik habe ich zunächst gelöst, indem ich den Textfortsetzer so geändert habe, dass er nicht mehr nach dem ursprünglichen Wort am Anfang des Satzes im Korpus sucht, sondern einfach nach dem ursprünglichen Wort im Korpus, unabhängig von seiner Position. Als Nächstes habe ich einen adaptiven Fallback hinzugefügt, der zunächst versucht, die letzten drei Wörter im Korpus zu finden, dann zwei, dann eins, und wenn er nichts findet, nimmt er einfach etwas Zufälliges. Die aktuellen Probleme bestehen darin, dass die Generierung immer noch sehr seltsam aussieht, oft sehr zufällig ist und es Probleme mit der Gross-/Kleinschreibung und den Kasus gibt. Bei der nächsten Sitzung werde ich bereits mit der deutschen Version und den übrigen Einstellungen arbeiten.
 
 ## 19.9
 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Als Nutzer möchte ich zusätzliche Einstellungen zur Kontrolle der Fortsetzungsgenerierung haben, damit ich die Fortsetzungen nach meinen Vorlieben anpassen kann.
+- [ ] Als Nutzer möchte ich, dass die Anwendung Fortsetzungen sowohl auf Russisch auf der Grundlage von **Absurdopedia** als auch auf Deutsch auf der Grundlage von **Stupidedia *(und anderen)*** generieren kann, damit ich Geschichten sowohl auf Russisch als auch auf Deutsch erstellen kann.
+- [ ] Als Nutzer möchte ich die Möglichkeit haben, verschiedene Generierungsoptionen durchzugehen, um eine logischere Geschichte zu erstellen.
+- [ ] Als Nutzer möchte ich beim Aufrufen der Website nicht warten müssen, bis sie geladen ist, und wenn ich doch warten muss, dann möchte ich eine Animation sehen, damit ich sofort mit der Website arbeiten kann, ohne darüber nachdenken zu müssen, wann ich endlich mit dem Schreiben beginnen kann.
 
 ...
 
