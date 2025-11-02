@@ -1,155 +1,128 @@
+# main.py
 from pyodide.http import open_url
+from pyodide.ffi import create_proxy
 import markovify
 import js
 import re
 
-# load the corpus
-with open_url("./ru_corpus.txt") as f:
-    raw_text = f.read()
-    print(f"Debug: Corpus loaded, length={len(raw_text)}")
+# global state
+model = None
+last_generated_span = None
+current_lang = "de"
 
-# build markov model
-model = markovify.Text(raw_text, state_size=2, well_formed=True)
-
-# get DOM elements
+# dom elements
 text_input = js.document.getElementById("text-input")
 length_slider = js.document.getElementById("length-slider")
 length_value = js.document.getElementById("length-value")
+creativity_slider = js.document.getElementById("creativity-slider")
+creativity_value = js.document.getElementById("creativity-value")
 continue_button = js.document.getElementById("continue-button")
+another_button = js.document.getElementById("another-button")
 loading = js.document.getElementById("loading")
 
-def update_length_value(*args):
-    length_value.innerText = length_slider.value
-
+# update slider values
+def update_length_value(*args): length_value.innerText = length_slider.value
+def update_creativity_value(*args): creativity_value.innerText = creativity_slider.value
 length_slider.oninput = update_length_value
-update_length_value()
+creativity_slider.oninput = update_creativity_value
+update_length_value(); update_creativity_value()
 
+# load markov model for language
+def load_model(lang):
+    global model
+    corpus = "./ru_corpus.txt" if lang == "ru" else "./de_corpus.txt"
+    with open_url(corpus) as f: raw = f.read()
+    model = markovify.Text(raw, state_size=2, well_formed=True)
+
+# clean generated text
 def post_process(text):
-    if not text:
-        return "."
+    if not text: return "."
     text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r'(\b\w+\b)(\s+\1){2,}', r'\1', text)  # remove word repetitions
-    if not text.endswith(('.', '!', '?')):
-        text += '.'
+    text = re.sub(r'(\b\w+\b)(\s+\1){2,}', r'\1', text)
+    if not re.search(r'[.!?]$', text): text += '.'
     return text.strip()
 
-def generate_continuation(*args):
+# generate continuation
+def generate_continuation(replace_last=False, *args):
+    global last_generated_span, current_lang
     continue_button.disabled = True
+    another_button.disabled = True
     loading.classList.remove("hidden")
-    current_text = text_input.innerText.strip() or text_input.value.strip() or ""
-    if not current_text:
-        print("Debug: No input text detected!")
-        reset()
-        return
-    
+
+    if not text_input.innerText.strip() and not replace_last:
+        reset(); return
+
     word_limit = int(length_slider.value)
-    generated_sentences = []
-    total_words = 0
-    max_tries = 50
+    creativity = int(creativity_slider.value) / 100
+    max_overlap = 1.0 - creativity * 0.7
+    min_overlap = max(0.1, creativity * 0.5)
 
-    words = re.split(r'\s+', current_text.strip())
-    print(f"Debug: Raw input='{current_text}', Split words={words}")
+    sentences = []; total = 0; tries = 0; max_tries = 60
 
-    # try different continuation strategies
-    last_word = words[-1] if words else ""
-    last_two_words = " ".join(words[-2:]) if len(words) >= 2 else ""
-    last_three_words = " ".join(words[-3:]) if len(words) >= 3 else ""
-    
-    print(f"Debug: Last word='{last_word}', Last two='{last_two_words}', Last three='{last_three_words}'")
-    print(f"Debug: Target word limit={word_limit}")
+    while total < word_limit and tries < max_tries:
+        remaining = word_limit - total
+        sentence = None
+        if remaining <= 12:
+            sentence = model.make_short_sentence(remaining * 2,
+                max_overlap_ratio=max_overlap,
+                min_overlap_ratio=min_overlap,
+                tries=20)
+        else:
+            sentence = model.make_sentence(
+                max_overlap_ratio=max_overlap,
+                min_overlap_ratio=min_overlap,
+                tries=20)
 
-    # strategy 1: try to continue from last few words as context
-    continuation_found = False
-    attempts = 0
-    
-    # try with different context lengths and approaches
-    for context in [last_three_words, last_two_words, last_word]:
-        if continuation_found or attempts >= max_tries:
-            break
-            
-        if not context:
-            continue
-            
-        print(f"Debug: Trying context continuation with: '{context}'")
-        
-        # try multiple times with this context
-        for i in range(15):
-            try:
-                # generate sentence and check if it naturally continues from our context
-                sentence = model.make_sentence(tries=20)
-                if sentence:
-                    # check if generated sentence connects well with our context
-                    sentence_words = sentence.split()
-                    if len(sentence_words) > 0:
-                        # simple heuristic: if any word from context appears in first few words of sentence
-                        context_words = context.lower().split()
-                        first_few = [w.lower() for w in sentence_words[:3]]
-                        
-                        if any(cw in first_few for cw in context_words) or i > 8:  # accept after some tries
-                            sentence_word_count = len(sentence_words)
-                            if total_words + sentence_word_count <= word_limit:
-                                generated_sentences.append(sentence)
-                                total_words += sentence_word_count
-                                continuation_found = True
-                                print(f"Debug: Found continuation: '{sentence[:50]}...' (words: {sentence_word_count})")
-                                break
-                            
-                attempts += 1
-            except Exception as e:
-                print(f"Debug: Error in context continuation: {e}")
-                attempts += 1
-        
-        if continuation_found:
-            break
+        if sentence:
+            words = len(sentence.split())
+            if words <= remaining * 1.3:
+                if total + words > word_limit:
+                    take = word_limit - total
+                    sentence = ' '.join(sentence.split()[:take])
+                    words = take
+                sentences.append(sentence)
+                total += words
+        tries += 1
 
-    # strategy 2: if no good continuation found, generate more sentences to reach word limit
-    while total_words < word_limit and attempts < max_tries:
-        try:
-            remaining_words = word_limit - total_words
-            print(f"Debug: Need {remaining_words} more words")
-            
-            # try to generate appropriate length sentence
-            if remaining_words <= 10:
-                sentence = model.make_short_sentence(remaining_words * 2, tries=15)
-            else:
-                sentence = model.make_sentence(tries=15)
-                
-            if sentence:
-                sentence_words = len(sentence.split())
-                if sentence_words <= remaining_words * 1.2:  # allow slight overflow
-                    if total_words + sentence_words > word_limit:
-                        # trim sentence to fit word limit
-                        words_to_take = word_limit - total_words
-                        sentence = ' '.join(sentence.split()[:words_to_take])
-                        sentence_words = len(sentence.split())
-                    
-                    generated_sentences.append(sentence)
-                    total_words += sentence_words
-                    print(f"Debug: Added sentence: '{sentence[:50]}...' (words: {sentence_words})")
-                    
-                    if total_words >= word_limit:
-                        break
-            else:
-                print("Debug: Could not generate sentence, breaking")
-                break
-                
-        except Exception as e:
-            print(f"Debug: Error generating additional content: {e}")
-            break
-        
-        attempts += 1
+    result = post_process(' '.join(sentences))
+    span = js.document.createElement("span")
+    span.className = "new-text"
+    span.innerText = " " + result
 
-    continuation = ' '.join(generated_sentences)
-    continuation = post_process(continuation)
-    print(f"Debug: Final continuation='{continuation}' (total words: {len(continuation.split())})")
+    if replace_last and last_generated_span and last_generated_span.parentNode == text_input:
+        text_input.replaceChild(span, last_generated_span)
+        last_generated_span = span
+    else:
+        text_input.appendChild(span)
+        last_generated_span = span
 
-    if continuation and len(continuation.split()) > 0:
-        text_input.innerHTML += f' <span class="new-text">{continuation}</span>'
-    
     reset()
 
+# reset ui state
 def reset():
     continue_button.disabled = False
+    another_button.disabled = False
     loading.classList.add("hidden")
 
-continue_button.onclick = generate_continuation
+# change language and reload model
+def change_language(lang):
+    global current_lang
+    if lang != current_lang:
+        current_lang = lang
+        loading.classList.remove("hidden")
+        continue_button.disabled = True
+        another_button.disabled = True
+        def reload(): load_model(lang); reset()
+        js.setTimeout(create_proxy(reload), 100)
+
+# expose to js
+js.window.changeLanguage = change_language
+
+# button proxies (owned)
+continue_proxy = create_proxy(lambda e: generate_continuation(False))
+another_proxy = create_proxy(lambda e: generate_continuation(True))
+continue_button.onclick = continue_proxy
+another_button.onclick = another_proxy
+
+# init german model
+load_model("de")

@@ -1,35 +1,105 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Продолжатор текста</title>
+    <meta name="viewport" content="Wl=device-width, initial-scale=1.0">
+    <title data-key="title">Textfortsetzer</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Продолжатор</h1>
+        <h1 data-key="header">Fortsetzer</h1>
         <div class="controls">
+            <!-- length slider -->
             <div class="slider-container">
-                <label for="length-slider">Длина продолжения [слов]</label>
+                <label for="length-slider" data-key="length_label">Fortsetzungslänge [Wörter]</label>
                 <input type="range" id="length-slider" min="10" max="100" value="20">
                 <span id="length-value">20</span>
             </div>
-            <div class="input-container">
-                <div id="text-input" contenteditable="true" class="input-area" placeholder="Введите текст..."></div>
+            <!-- creativity slider -->
+            <div class="slider-container">
+                <label for="creativity-slider" data-key="creativity_label">Kreativität</label>
+                <input type="range" id="creativity-slider" min="1" max="100" value="50">
+                <span id="creativity-value">50</span>
             </div>
-            <button id="continue-button" class="continue-button">Продолжить</button>
-            <div id="loading" class="loading hidden">Генерирую продолжение...</div>
+            <!-- language switch -->
+            <div class="language-switch">
+                <label><input type="radio" name="lang" value="ru"> RU</label>
+                <label><input type="radio" name="lang" value="de" checked> DE</label>
+            </div>
+            <!-- text input -->
+            <div class="input-container">
+                <div id="text-input" contenteditable="true" class="input-area" data-placeholder-key="placeholder"></div>
+            </div>
+            <!-- action buttons -->
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button id="continue-button" class="continue-button" data-key="continue">Fortsetzen</button>
+                <button id="another-button" class="continue-button" data-key="another">Noch eine Variante</button>
+            </div>
+            <!-- loading indicator -->
+            <div id="loading" class="loading hidden" data-key="loading">Generiere Fortsetzung...</div>
         </div>
     </div>
+
     <script>
+        // translations for ui
+        const translations = {
+            ru: {
+                title: "Продолжатор текста",
+                header: "Продолжатор",
+                length_label: "Длина продолжения [слов]",
+                creativity_label: "Креативность",
+                placeholder: "Введите текст...",
+                continue: "Продолжить",
+                another: "Ещё вариант",
+                loading: "Генерирую продолжение..."
+            },
+            de: {
+                title: "Textfortsetzer",
+                header: "Fortsetzer",
+                length_label: "Fortsetzungslänge [Wörter]",
+                creativity_label: "Kreativität",
+                placeholder: "Text eingeben...",
+                continue: "Fortsetzen",
+                another: "Noch eine Variante",
+                loading: "Generiere Fortsetzung..."
+            }
+        };
+
+        // apply language to dom
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelector('title').textContent = translations[lang].title;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key] !== undefined) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            const input = document.getElementById('text-input');
+            if (!input.textContent.trim()) input.textContent = '';
+            input.setAttribute('placeholder', translations[lang].placeholder);
+        }
+
+        // language radio change handler
+        document.querySelectorAll('input[name="lang"]').forEach(radio => {
+            radio.addEventListener('change', e => {
+                const lang = e.target.value;
+                applyLanguage(lang);
+                if (window.changeLanguage) window.changeLanguage(lang);
+            });
+        });
+
+        // init with german
+        applyLanguage('de');
+
+        // load pyodide and python
         async function main() {
             let pyodide = await loadPyodide();
             await pyodide.loadPackage("micropip");
             const micropip = pyodide.pyimport("micropip");
             await micropip.install("markovify");
-            //await micropip.install("pyodide.http")
             await pyodide.runPythonAsync(await (await fetch("./main.py")).text());
         }
         main();

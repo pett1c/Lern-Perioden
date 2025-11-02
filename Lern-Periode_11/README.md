@@ -1,6 +1,10 @@
 # Lern-Periode 11
 # 22.8 bis 26.9
 
+## fertiges Projekt
+
+Dies ist die Webanwendung **“Fortsetzer“**, die auf *Deutsch* und *Russisch* verfügbar ist und absurde und humorvolle Fortsetzungen für vom Benutzer eingegebene Texte generiert. Die Generierung basiert auf einem **Markov-Kettenmodell** (`markovify` in Python), das anhand eines Textkorpus trainiert wird, der durch *Parsing* (`de_parser.py`, `ru_parser.py`) aus zwei satirischen Wiki-Websites zusammengestellt wurde: der deutschen **[Uncyclopedia](https://de.uncyclopedia.co/)** und der russischen **[Absurdopedia](https://absurdopedia.wiki/)**. Technisch wurde das Projekt in *HTML* und *CSS* umgesetzt, wobei die Logik über die *Pyodide*-Technologie in *Python* ausgeführt wird.
+
 ## Grob-Planung
 
 1. Erklären Sie Ihre Projekt-Idee in einem Satz, als müssen Sie einen Investor davon überzeugen.
@@ -57,18 +61,17 @@ Heute habe ich mich als Erstes damit beschäftigt, den Output des Fortsetzers zu
 
 ## 19.9
 
-- [ ] Als Nutzer möchte ich zusätzliche Einstellungen zur Kontrolle der Fortsetzungsgenerierung haben, damit ich die Fortsetzungen nach meinen Vorlieben anpassen kann.
-- [ ] Als Nutzer möchte ich, dass die Anwendung Fortsetzungen sowohl auf Russisch auf der Grundlage von **Absurdopedia** als auch auf Deutsch auf der Grundlage von **Stupidedia *(und anderen)*** generieren kann, damit ich Geschichten sowohl auf Russisch als auch auf Deutsch erstellen kann.
-- [ ] Als Nutzer möchte ich die Möglichkeit haben, verschiedene Generierungsoptionen durchzugehen, um eine logischere Geschichte zu erstellen.
-- [ ] Als Nutzer möchte ich beim Aufrufen der Website nicht warten müssen, bis sie geladen ist, und wenn ich doch warten muss, dann möchte ich eine Animation sehen, damit ich sofort mit der Website arbeiten kann, ohne darüber nachdenken zu müssen, wann ich endlich mit dem Schreiben beginnen kann.
-
-...
+Die Arbeitspakete wurden auf den 26.9 verschoben, da ich am 19.9 auf einer Reise vom Italienischkurs war.
 
 ## 26.9
 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [x] Als Nutzer möchte ich zusätzliche Einstellungen zur Kontrolle der Fortsetzungsgenerierung haben, damit ich die Fortsetzungen nach meinen Vorlieben anpassen kann.
+- [x] Als Nutzer möchte ich, dass die Anwendung Fortsetzungen sowohl auf Russisch auf der Grundlage von **Absurdopedia** als auch auf Deutsch auf der Grundlage von ~~**Stupidedia *(und anderen)***~~ **Uncyclopedia** generieren kann, damit ich Geschichten sowohl auf Russisch als auch auf Deutsch erstellen kann.
+- [x] Als Nutzer möchte ich die Möglichkeit haben, verschiedene Generierungsoptionen durchzugehen, um eine logischere Geschichte zu erstellen.
+- [x] ~~Als Nutzer möchte ich beim Aufrufen der Website nicht warten müssen, bis sie geladen ist, und wenn ich doch warten muss, dann möchte ich eine Animation sehen, damit ich sofort mit der Website arbeiten kann, ohne darüber nachdenken zu müssen, wann ich endlich mit dem Schreiben beginnen kann.~~
 
-...
+Heute habe ich damit begonnen, die Seiten von **Stupidedia** zu parsen, um die URLs in `de_parser.py` zu füllen. Das hat lange gedauert und war letztendlich leider umsonst – ich habe über vier Stunden lang versucht, die Seiten von **Stupidedia** erfolgreich zu parsen, indem ich den Code des Parsers selbst geändert habe, um die *Cloudflare-Überprüfung* auf der Website zu umgehen, und am Ende musste ich die Seiten erneut sammeln, diesmal jedoch von einer anderen ähnlichen deutschen Wiki-Seite – **[Uncyclopedia](https://de.uncyclopedia.co/)**. Nachdem ich `de_corpus.txt` erfolgreich ausgefüllt hatte, begann ich mit dem Hinzufügen neuer Einstellungen und eines Ladebildschirms. Bei der Arbeit mit dem zweiten wurde mir klar, dass der Ladebildschirm überhaupt nicht erforderlich ist – die Website kann jetzt fast sofort genutzt werden. Eine neue Einstellung war die Skala *„Kreativität”*. Parallel dazu fügte ich auch die Button *„Eine weitere Option”* hinzu. Am schwierigsten und *(fast)* zeitaufwändigsten war die Umsetzung der Sprachumschaltung, was ebenfalls sehr viel Zeit in Anspruch nahm, aber letztendlich funktioniert alles einwandfrei und ich bin mit dem Ergebnis zufrieden, obwohl ich dafür sehr viel arbeiten musste.
+
+## Reflexion
+
+Dieses Projekt war für mich ein lang gehegter Wunsch, denn ich wollte schon seit langem mit irgendeiner Art der Textgenerierung arbeiten, sei es mit neuronalen Netzen oder, wie in meinem Fall, mit der Generierung auf Basis von Markov-Ketten. Ich habe mich nicht ohne Grund für Markov-Ketten entschieden – ich habe vor kurzem zufällig von dieser Idee gehört und sie hat mir einfach als Idee sehr gut gefallen, ebenso wie ihre Geschichte. Deshalb habe ich mich entschieden, speziell mit ihnen zu arbeiten. Abgesehen davon war das Projekt ziemlich... anstrengend. Das Sammeln der Seiten war unglaublich langweilig, aber notwendig, um zumindest ein halbwegs vernünftiges Ergebnis zu erzielen. Und die letzten Phasen der Umsetzung haben mich unglaublich viel Zeit gekostet, wahrscheinlich weil ich den größten Teil davon mit einer sinnlosen Beschäftigung verbracht habe – dem Problem mit Cloudflare auf Stupidedia. Ich hätte einfach sofort ein anderes Wiki wählen sollen, aber leider arbeitete ich auch zum ersten Mal mit Parsern speziell für Webseiten und hatte keine Ahnung, ob es trotz aller Schwierigkeiten mit Cloudflare möglich war, die von mir bereits gesammelten Seiten auf Stupidedia zu verwenden. Also ja. Das Projekt war äußerst interessant, wenn auch ziemlich komplex.
