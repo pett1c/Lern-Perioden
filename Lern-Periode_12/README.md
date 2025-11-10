@@ -12,12 +12,14 @@ Mein Projekt ist ein Spiel im Roguelike-Genre (Deckbuilder), inspiriert von Bala
 ## Epics
 
 **1: Wörterbuch, Buchstabensatz und Wortvalidierung**
+
 Als Spieler möchte ich, dass das Spiel die von mir eingegebenen Wörter überprüft, damit der Fokus auf Fairness liegt.
 **Features:**
 - Laden und Interpretieren des Wörterbuchs
 - Validierung der vom Benutzer eingegebenen Wörter
 
 **2: Runde – Tastatur, Felder, Eingabe, Schritt**
+
 Als Spieler möchte ich die Möglichkeit haben, Wörter aus einem festen Satz von Buchstaben zusammenzustellen, um die Spannung des Limits zu spüren.
 **Features:**
 - QWERTZ-Tastatur, auf der die Buchstaben aus dem aktuellen Buchstabensatz hervorgehoben werden
@@ -27,12 +29,14 @@ Als Spieler möchte ich die Möglichkeit haben, Wörter aus einem festen Satz vo
 - Beim Bewegen des Mauszeigers über einen Buchstaben erscheint ein Popup-Fenster, in dem alle erforderlichen Eigenschaften des Buchstabens beschrieben werden
 
 **3: Formel für Punkte und Buchstabenverbesserungen**
+
 Als Spieler möchte ich strategische Buchstabenverbesserungen, damit meine Combos Euphorie auslösen.
 **Features:**
 - Jeder Buchstabe hat ein Gewicht (abhängig von der Häufigkeit, mit der der Buchstabe in Wörtern verwendet wird)
 - Jeder Buchstabe kann nun Verbesserungen erhalten, nämlich Bonus (+5-10 Punkte), Glas (x2 Multiplikator, 25 % Chance, dass er zerstört wird), Stahl (x1,5 Multiplikator, solange er im aktuellen Buchstabensatz enthalten ist), Gold (+3-5 $, wenn er am Ende übrig bleibt)
 
 **4: Progression – Stufen, Runden, Bosse**
+
 Als Spieler möchte ich einen steigenden Schwierigkeitsgrad mit einer Quote haben, damit mein Sieg wertvoll ist.
 **Features:**
 - Eine Quote, die mit jeder Runde steigt
@@ -42,6 +46,7 @@ Als Spieler möchte ich einen steigenden Schwierigkeitsgrad mit einer Quote habe
 - Endlosmodus
 
 **5: Shop + Karten**
+
 Als Spieler möchte ich einen Shop haben, um mein Vokabular, meine Buchstaben und insgesamt mein Gameplay zu verbessern, damit jedes Spiel und jeder meiner Builds einzigartig ist.
 **Features:**
 - Vollwertiger Shop, in dem Folgendes erscheint: 2 Buchstaben zum Kauf (die Anzahl kann mit einem speziellen Gutschein erhöht werden), 2 zufällige Pakete, 1 Gutschein (selten), Reroll (zwei Buchstaben zum Kauf, wird jedes Mal teurer)
@@ -49,12 +54,14 @@ Als Spieler möchte ich einen Shop haben, um mein Vokabular, meine Buchstaben un
 - Neun Wortkarten, die folgende Funktionen erfüllen: kopiert die letzte Buchstaben-/Wortkarte, macht zwei Buchstaben zu Bonusbuchstaben, macht einen Buchstaben zu einem Stahlbuchstaben, macht einen Buchstaben zu einem Glasbuchstaben, macht einen Buchstaben zu einem Goldbuchstaben, verdoppelt das Geld (max. 50 $), gibt zwei zufällige Buchstaben, zerstört zwei zufällige Buchstaben und wandelt einen Buchstaben in einen anderen um.
 
 **6: Roguelike – Zufälligkeit des Vokabulares**
+
 Als Spieler möchte ich, dass jedes Spiel einen einzigartigen Vokabular hat, damit ich es wiederholen kann.
 **Features:**
 - Zufälliger Start des Spiels einstellen
 - „Schnipsel” wie Pakete mit Buchstaben und Karten. Es gibt folgende Arten: Standard (5-6 Buchstaben zur Auswahl), alphabetisch (4 alphabetische Karten zur Auswahl), wörtlich (4 wörtliche Karten zur Auswahl). Außerdem werden sie in folgende Arten unterteilt: Normal (nur ein Buchstabe/eine Karte kann ausgewählt werden) und Selten (zwei können ausgewählt werden)
 
 **7: UI/UX, Ton, Soundtrack und Sonstiges**
+
 Als Spieler möchte ich ein schönes und reaktionsschnelles Spiel, das mich fesselt.
 **Features:**
 - Kostenlose Assets aus dem Internet für GUI und Sonstiges
