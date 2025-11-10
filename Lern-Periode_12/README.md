@@ -72,7 +72,9 @@ Als Spieler möchte ich ein schönes und reaktionsschnelles Spiel, das mich fess
 ## 07.11
 
 - [x] Grobe Beschreibung schreiben
+
 —
+
 - [x] Repository erstellen
 - [x] Godot installieren
 - [x] Epics schreiben
@@ -82,7 +84,9 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 ## 14.11
 
 - [] Suche nach geeigneten Assets
+
 —
+
 - [] Einen Projekt erstellen, Assets importieren, MainMenu mit minimaler UI erstellen
 - [] Round-Szene mit minimaler UI erstellen
 - [] GameManager mit Laden und Verarbeiten eines Testwörterbuchs erstellen
@@ -92,7 +96,9 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 ## 21.11
 
 - [] 
+
 —
+
 - [] 
 - [] 
 - [] 
@@ -102,7 +108,9 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 ## 28.11
 
 - [] 
+
 —
+
 - [] 
 - [] 
 - [] 
@@ -112,7 +120,9 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 ## 05.12
 
 - [] 
+
 —
+
 - [] 
 - [] 
 - [] 
@@ -122,7 +132,9 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 ## 12.12
 
 - [] 
+
 —
+
 - [] 
 - [] 
 - [] 
@@ -132,7 +144,9 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 ## 19.12
 
 - [] 
+
 —
+
 - [] 
 - [] 
 - [] 
