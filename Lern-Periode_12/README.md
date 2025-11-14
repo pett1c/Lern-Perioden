@@ -87,21 +87,21 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 
 —
 
-- [] Einen Projekt erstellen, Assets importieren, MainMenu mit minimaler UI erstellen
-- [] Round-Szene mit minimaler UI erstellen
-- [] GameManager mit Laden und Verarbeiten eines Testwörterbuchs erstellen
+- [x] Einen Projekt erstellen, Assets importieren, MainMenu mit minimaler UI erstellen
+- [x] Round-Szene mit minimaler UI erstellen
+- [x] GameManager mit Laden und Verarbeiten eines Testwörterbuchs erstellen
 
-...
+Als Erstes habe ich das dezentrale Arbeitspaket erledigt, nämlich die Suche nach Assets, die ich für Texturen und anderes benötige. Ich habe drei Assets hinzugefügt: eines für die gesamte UI, ein zweites für Progressbars und ein drittes für die Tastatur. Alle wurden kostenlos auf itch.io gefunden. Der nächste Schritt für mich war die Erstellung des Projekts und des Hauptmenüs mit einer minimalistischen UI in Form von drei Buttons: Start, Einstellungen und Beenden. Die meiste Zeit habe ich für die Erstellung der Buttons gebraucht, da eigene Buttons in Godot etwas seltsam erstellt werden und ich im Internet nach Informationen suchen musste. Danach habe ich mich mit dem Schreiben des grundlegenden GameManagers beschäftigt, in dem ich einen Test-Buchstabensatz lade. Schliesslich habe ich die Round-Szene implementiert, in der sich auch die grundlegende UI in Form eines Progressbars für die Quote und die Anzahl der Schritte befindet.
 
 ## 21.11
 
-- [] 
+- [] Suche nach einem deutschen Wörterbuch zur Validierung, dessen Download und Überprüfung in der Konsole.
 
 —
 
-- [] 
-- [] 
-- [] 
+- [] Erstellung eines Vokabulars mit Gewichtung und Anzahl jedes Buchstabens.
+- [] Generierung eines Buchstabensatzes mit Anzeige in der Round-Szene.
+- [] Erstellung einer Möglichkeit zur Eingabe von Buchstaben, Validierung der Eingabe.
 
 ...
 

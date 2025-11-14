@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkm1l4k71vtpp"]
+
+[ext_resource type="Texture2D" uid="uid://dvca3o6klemfc" path="res://assets/ui_flat/01_Flat_Theme/Sprites/UI_Flat_Frame03a.png" id="1_ekxnf"]
+[ext_resource type="Theme" uid="uid://yvt4ru5e6cfv" path="res://assets/resources/button.tres" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://cysl0y30yjdx7" path="res://scenes/main_menu.gd" id="1_wu84c"]
+[ext_resource type="FontFile" uid="uid://cn8cvwvgbr7ti" path="res://assets/fonts/PressStart2P-Regular.ttf" id="4_wu84c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bqqt6"]
+texture = ExtResource("1_ekxnf")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu84c")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bqqt6")
+
+[node name="Wordato" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 75
+text = "Wordato"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Start" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l6cm7")
+text = "Start"
+
+[node name="Options" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l6cm7")
+text = "Options"
+
+[node name="Exit" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l6cm7")
+text = "Exit"
+
+[connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]
