@@ -74,7 +74,7 @@ Heute habe ich die Grundlage für das Projekt vorbereitet: Die meiste Zeit habe 
 
 ## 14.11
 
-- [] Suche nach geeigneten Assets
+- [x] Suche nach geeigneten Assets
 —
 - [] Einen Projekt erstellen, Assets importieren, MainMenu mit minimaler UI erstellen
 - [] Round-Szene mit minimaler UI erstellen
