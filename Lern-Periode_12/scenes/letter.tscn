@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc8otrtdtla4j"]
+
+[ext_resource type="Script" uid="uid://shkcgr5pbgc1" path="res://scenes/letter.gd" id="1_antxc"]
+[ext_resource type="Texture2D" uid="uid://dgnumnfiju8pu" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/button.png" id="2_rprtv"]
+[ext_resource type="FontFile" uid="uid://cn8cvwvgbr7ti" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_8y6hk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_antxc"]
+atlas = ExtResource("2_rprtv")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rprtv"]
+atlas = ExtResource("2_rprtv")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y6hk"]
+atlas = ExtResource("2_rprtv")
+region = Rect2(38, 0, 19, 21)
+
+[node name="Letter" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.015000001
+anchor_bottom = 0.029000001
+offset_right = -0.20000076
+offset_bottom = 0.11999893
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_antxc")
+texture_pressed = SubResource("AtlasTexture_rprtv")
+texture_hover = SubResource("AtlasTexture_8y6hk")
+script = ExtResource("1_antxc")
+
+[node name="CharLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 17.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("3_8y6hk")
+theme_override_font_sizes/font_size = 8
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeightLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 13.0
+offset_right = 14.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("3_8y6hk")
+theme_override_font_sizes/font_size = 5
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
