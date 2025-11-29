@@ -25,38 +25,48 @@ func _ready() -> void:
 	init_deck()
 
 func load_dictionary() -> void:
-	if not FileAccess.file_exists("res://data/dictionary.jsonl"):
-		printerr("dictionary file missing")
+	# use new clean dictionary path
+	const DICT_PATH = "res://data/clean_dictionary.json" 
+	
+	if not FileAccess.file_exists(DICT_PATH):
+		printerr("clean dictionary file missing: ", DICT_PATH)
 		return
 		
-	var file = FileAccess.open("res://data/dictionary.jsonl", FileAccess.READ)
-	while file.get_position() < file.get_length():
-		var line = file.get_line()
-		var json = JSON.parse_string(line)
-		
-		# extract "word" field and ignore short words
-		if json and "word" in json:
-			var word = json["word"].to_lower()
-			if word.length() >= 2:
-				valid_words[word] = true
+	var file = FileAccess.open(DICT_PATH, FileAccess.READ)
+	var content = file.get_as_text()
 	
-	print("dictionary loaded: ", valid_words.size())
+	# parse entire file as a single json array
+	var parsed_json = JSON.parse_string(content)
+	
+	if parsed_json is Array:
+		# convert array of words into a dictionary for o(1) lookup
+		for word in parsed_json:
+			valid_words[word] = true 
+			
+		print("dictionary loaded. clean words: ", valid_words.size())
+	else:
+		printerr("dictionary parsing error. ensure 'clean_dictionary.json' is a clean array.")
 
 func init_deck() -> void:
+	# build the initial deck based on letter_config counts
 	deck.clear()
-	# populate deck based on frequency counts
-	for letter in letter_config:
-		var count = letter_config[letter]["count"]
-		for i in range(count):
-			deck.append(letter)
+	for char in letter_config.keys():
+		var count = letter_config[char]["count"]
+		for _i in range(count):
+			deck.append(char)
 	deck.shuffle()
+	print("deck initialized and shuffled.")
+
+func get_hand(count: int) -> Array[String]:
+	var hand = []
+	for _i in range(count):
+		if deck.is_empty():
+			# refill deck from discard or reshuffle (future feature)
+			break
+		# draw a random card and remove it from the deck
+		var char = deck.pop_at(randi() % deck.size())
+		hand.append(char)
+	return hand
 
 func is_word_valid(word: String) -> bool:
-	return valid_words.has(word.to_lower())
-
-func get_hand(size: int) -> Array[String]:
-	var hand: Array[String] = []
-	for i in range(size):
-		if deck.size() > 0:
-			hand.append(deck.pop_back())
-	return hand
+	return valid_words.has(word)

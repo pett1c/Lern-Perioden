@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqam6grgju7k4"]
+[gd_scene load_steps=15 format=3 uid="uid://cqam6grgju7k4"]
 
 [ext_resource type="Script" uid="uid://dtbe5krk4kunp" path="res://scenes/round.gd" id="1_3gnes"]
 [ext_resource type="FontFile" uid="uid://cn8cvwvgbr7ti" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_3gnes"]
 [ext_resource type="Texture2D" uid="uid://btmefeed2qoxm" path="res://assets/ui_flat/01_Flat_Theme/Sprites/UI_Flat_InputField01a.png" id="2_b0w8h"]
 [ext_resource type="Texture2D" uid="uid://bpqkc8utyuh0d" path="res://assets/bars/04.png" id="3_b0w8h"]
 [ext_resource type="Texture2D" uid="uid://c1stma0e3p210" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/Spritesheets/ENTER.png" id="5_b0w8h"]
+[ext_resource type="Texture2D" uid="uid://cb7mfb8h227qv" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/Spritesheets/BACKSPACE.png" id="6_b1bvr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b1bvr"]
 texture = ExtResource("2_b0w8h")
@@ -24,6 +25,18 @@ region = Rect2(40, 0, 38, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxv1r"]
 atlas = ExtResource("5_b0w8h")
 region = Rect2(78, 0, 39, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snxki"]
+atlas = ExtResource("6_b1bvr")
+region = Rect2(0, 0, 54, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eri0w"]
+atlas = ExtResource("6_b1bvr")
+region = Rect2(54, 0, 51, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojwvf"]
+atlas = ExtResource("6_b1bvr")
+region = Rect2(105, 0, 54, 21)
 
 [node name="Round" type="Control"]
 layout_mode = 3
@@ -137,4 +150,21 @@ theme_override_fonts/font = ExtResource("2_3gnes")
 theme_override_font_sizes/font_size = 24
 text = "Feedback"
 
+[node name="DiscardButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.356
+anchor_right = 0.75000006
+anchor_bottom = 0.356
+offset_left = -64.00006
+offset_top = 127.67999
+offset_right = 127.99994
+offset_bottom = 207.68
+texture_normal = SubResource("AtlasTexture_snxki")
+texture_pressed = SubResource("AtlasTexture_eri0w")
+texture_hover = SubResource("AtlasTexture_ojwvf")
+stretch_mode = 0
+
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="DiscardButton" to="." method="_on_discard_pressed"]

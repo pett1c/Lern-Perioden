@@ -95,37 +95,37 @@ Als Erstes habe ich das dezentrale Arbeitspaket erledigt, nämlich die Suche nac
 
 ## 21.11
 
-- [] Suche nach einem deutschen Wörterbuch zur Validierung, dessen Download und Überprüfung in der Konsole.
+- [x] Suche nach einem deutschen Wörterbuch zur Validierung, dessen Download und Überprüfung in der Konsole.
 
 —
 
-- [] Erstellung eines Vokabulars mit Gewichtung und Anzahl jedes Buchstabens.
-- [] Generierung eines Buchstabensatzes mit Anzeige in der Round-Szene.
-- [] Erstellung einer Möglichkeit zur Eingabe von Buchstaben, Validierung der Eingabe.
+- [x] Erstellung eines Vokabulars mit Gewichtung und Anzahl jedes Buchstabens.
+- [x] Generierung eines Buchstabensatzes mit Anzeige in der Round-Szene.
+- [x] Erstellung einer Möglichkeit zur Eingabe von Buchstaben, Validierung der Eingabe.
 
-...
+Heute war ein produktiver Tag. Als Erstes habe ich mich auf die Suche nach einem Wörterbuch gemacht, aber letztendlich habe ich nur ein fertiges Wörterbuch im JSONL-Format direkt von Wikimedia gefunden, das leider sehr viel "Müll" enthält, den ich nicht brauche, und ausserdem sehr gross ist (1 GB), was zu langen Ladezeiten beim Testen führt. Nach der Suche habe ich mich jedoch mit der Überarbeitung von `game_manager.gd` beschäftigt, wo das Wörterbuch geladen und die eingegebenen Wörter validiert werden. Danach habe ich mich mit der Erstellung einer neuen Szene beschäftigt – `Letter`, in der sich eine Button mit Text befindet, sowie `letter.gd`, in der der Button der gewünschte Buchstabe und das gewünschte Gewicht zugewiesen werden. Zuletzt habe ich die Szene `Round` überarbeitet (die erforderlichen Bereiche für die verfügbaren Buchstaben in der Hand, die Eingabe, die Button „Submit“ und das Textfelf „Feedback“ hinzugefügt) und seine `round.gd`, in der ich alles zusammenführe.
 
 ## 28.11
 
-- [] 
+- [x] Die Überarbeitung eines Wörterbuchs, bei der der "Müll" entfernt und nur die reinen Wörter übrig bleiben.
 
 —
 
-- [] 
-- [] 
-- [] 
+- [x] Eine vollständige Punkteberechnung (vorerst ohne Buchstabenverbesserungen) und eine Aktualisierung der Quote implementieren.
+- [x] Die Mechanik zum Zurücksetzen/Mischen der Buchstaben implementieren.
+- [x] Eine Überprüfung des Rundenendes (Sieg/Verlust) erstellen und entsprechend den Übergang zu den Ergebnissen/zum Shop implementieren.
 
-...
+Heute war ein äusserst produktiver Tag. Als Erstes habe ich mein Wörterbuch übergearbeitet, d. h. unnötigen Müll zu entfernen – zuerst habe ich alles ausser dem Feld `"word"` gelöscht. Danach habe ich doppelte Wörter entfernt und zum Schluss Wörter mit Sonderzeichen und Bindestrichen (wobei ich nur Buchstaben des deutschen Alphabets als zulässige Zeichen belassen habe). Am Ende hatte ich einen grossen Array mit mehr als **300.000** Wörtern. Als Nächstes habe ich mich mit der Umsetzung der Punkteberechnung und der Aktualisierung der Quote, der Umsetzung des `DiscardButton` (der derzeit einen Schritt benötigt, um zu funktionieren) beschäftigt und schliesslich alles für den Übergang zu den entsprechenden Szenen vorbereitet (bei einem Verlust – Szene / Pop-up mit Statistiken, bei einem Sieg – Übergang zum Shop).
 
 ## 05.12
 
-- [] 
+- [] Eine Szene mit Laden erstellen, die nun leer ist (um den Übergang zwischen den Runden realisieren: Runde -> Laden -> Stufenkarte)
 
 —
 
-- [] 
-- [] 
-- [] 
+- [] Entwicklung eine Szene zwischen dem Hauptmenü und der Runde - Stufenkarte, wo alle Informationen über die Runden und den Boss am Ende der Stufe zu finden sind (wie in Balatro).
+- [] Grafische Elemente in der Runde korrigieren (derzeit sieht beispielsweise die Hand wie 7 sehr kleine Buchstaben aus, während `SubmitButton` und `DiscardButton` sehr gross sind; `Feedback` Feld entfernen und durch eine schöne Punkteanzeige auf der linken Seite ersetzen (wie in Balatro)).
+- [] Realisierung einer grundlegender Progression mit einer Erhöhung der Quote in jeder Runde und einem vollständigen Debuff in der letzten Runde (Boss). (`TBD:` Nach der vollständigen Implementierung des Shops und der Wirtschaft zuerst die Quotenlimits für die Runden anpassen, dann die Progression von der ersten bis zur letzten Stufe mit dem Endboss oder einem Endlosspiel implementieren)
 
 ...
 
