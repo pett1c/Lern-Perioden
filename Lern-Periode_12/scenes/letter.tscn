@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dc8otrtdtla4j"]
 
-[ext_resource type="Script" uid="uid://shkcgr5pbgc1" path="res://scenes/letter.gd" id="1_antxc"]
+[ext_resource type="Script" uid="uid://b58jgkhew3eyg" path="res://scenes/letter.gd" id="1_antxc"]
 [ext_resource type="Texture2D" uid="uid://dgnumnfiju8pu" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/button.png" id="2_rprtv"]
 [ext_resource type="FontFile" uid="uid://cn8cvwvgbr7ti" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_8y6hk"]
 
@@ -27,6 +27,7 @@ grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_antxc")
 texture_pressed = SubResource("AtlasTexture_rprtv")
 texture_hover = SubResource("AtlasTexture_8y6hk")
+stretch_mode = 0
 script = ExtResource("1_antxc")
 
 [node name="CharLabel" type="Label" parent="."]

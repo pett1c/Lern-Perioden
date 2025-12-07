@@ -119,30 +119,22 @@ Heute war ein äusserst produktiver Tag. Als Erstes habe ich mein Wörterbuch ü
 
 ## 05.12
 
-- [] Eine Szene mit Laden erstellen, die nun leer ist (um den Übergang zwischen den Runden realisieren: Runde -> Laden -> Stufenkarte)
+- [x] Eine Szene mit Laden erstellen, die nun leer ist (um den Übergang zwischen den Runden realisieren: Runde -> Laden -> Stufenkarte)
 
 —
 
-- [] Entwicklung eine Szene zwischen dem Hauptmenü und der Runde - Stufenkarte, wo alle Informationen über die Runden und den Boss am Ende der Stufe zu finden sind (wie in Balatro).
-- [] Grafische Elemente in der Runde korrigieren (derzeit sieht beispielsweise die Hand wie 7 sehr kleine Buchstaben aus, während `SubmitButton` und `DiscardButton` sehr gross sind; `Feedback` Feld entfernen und durch eine schöne Punkteanzeige auf der linken Seite ersetzen (wie in Balatro)).
-- [] Realisierung einer grundlegender Progression mit einer Erhöhung der Quote in jeder Runde und einem vollständigen Debuff in der letzten Runde (Boss). (`TBD:` Nach der vollständigen Implementierung des Shops und der Wirtschaft zuerst die Quotenlimits für die Runden anpassen, dann die Progression von der ersten bis zur letzten Stufe mit dem Endboss oder einem Endlosspiel implementieren)
+- [x] Entwicklung eine Szene zwischen dem Hauptmenü und der Runde - Stufenkarte, wo alle Informationen über die Runden und den Boss am Ende der Stufe zu finden sind (wie in Balatro).
+- [x] Grafische Elemente in der Runde korrigieren (derzeit sieht beispielsweise die Hand wie 7 sehr kleine Buchstaben aus, während `SubmitButton` und `DiscardButton` sehr gross sind; `Feedback` Feld entfernen und durch eine schöne Punkteanzeige auf der linken Seite ersetzen (wie in Balatro)).
+- [x] Realisierung einer grundlegender Progression mit einer Erhöhung der Quote in jeder Runde und einem vollständigen Debuff in der letzten Runde (Boss). (`TBD:` Nach der vollständigen Implementierung des Shops und der Wirtschaft zuerst die Quotenlimits für die Runden anpassen, dann die Progression von der ersten bis zur letzten Stufe mit dem Endboss oder einem Endlosspiel implementieren)
 
-...
+Heute war ein äusserst produktiver Tag. Zuerst habe ich mich mit der Umgestaltung der Struktur der Knoten für die `Round`-Szene beschäftigt, die nun in zwei Teile „aufgeteilt” ist – den linken Teil mit Informationen und einer schönen Animation der Punktevergabe und den rechten Teil, in dem der Spieler Buchstaben auswählt und tatsächlich spielt. Danach habe ich die `StageMap`-Szene erstellt, in der der Spieler alle Runden der Stufe sehen und jede einzelne davon auswählen kann. Am Ende habe ich die `Shop`-Szene erstellt, in der es bisher nur ein Label mit dem Geld und einer Button zum Wechseln zur `StageMap` gibt. Parallel dazu habe ich mich mit dem Code beschäftigt.
 
 ## 12.12
 
-- [] 
-
-—
-
-- [] 
-- [] 
-- [] 
-
-...
+Ausfall, da wir an der BBB ganzen Tag sein werden.
 
 ## 19.12
-
+tbd am 12.12
 - [] 
 
 —

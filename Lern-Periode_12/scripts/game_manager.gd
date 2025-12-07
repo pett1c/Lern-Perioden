@@ -3,10 +3,22 @@ extends Node
 # dictionary for fast word lookups
 var valid_words: Dictionary = {}
 
-# current deck and letter configuration
+# current deck
 var deck: Array[String] = []
 
-# german letter distribution and scores
+# progression state
+var current_money: int = 0
+var current_stage: int = 1         # ante (stage) number
+var current_round_index: int = 0   # 0 = small, 1 = big, 2 = boss
+
+# round configuration
+var round_config = {
+	0: {"name": "Small Blind", "base_quota": 300, "reward": 3, "is_boss": false},
+	1: {"name": "Big Blind",   "base_quota": 450, "reward": 4, "is_boss": false},
+	2: {"name": "The Wall",    "base_quota": 600, "reward": 5, "is_boss": true, "debuff": "min_length_4"}
+}
+
+# letter distribution and scores
 var letter_config = {
 	"a": {"count": 5, "score": 1}, "b": {"count": 2, "score": 3}, "c": {"count": 2, "score": 3},
 	"d": {"count": 4, "score": 1}, "e": {"count": 15, "score": 1}, "f": {"count": 2, "score": 4},
@@ -22,33 +34,25 @@ var letter_config = {
 
 func _ready() -> void:
 	load_dictionary()
-	init_deck()
 
 func load_dictionary() -> void:
-	# use new clean dictionary path
 	const DICT_PATH = "res://data/clean_dictionary.json" 
 	
 	if not FileAccess.file_exists(DICT_PATH):
 		printerr("clean dictionary file missing: ", DICT_PATH)
 		return
-		
-	var file = FileAccess.open(DICT_PATH, FileAccess.READ)
-	var content = file.get_as_text()
 	
-	# parse entire file as a single json array
-	var parsed_json = JSON.parse_string(content)
+	var file = FileAccess.open(DICT_PATH, FileAccess.READ)
+	var parsed_json = JSON.parse_string(file.get_as_text())
 	
 	if parsed_json is Array:
-		# convert array of words into a dictionary for o(1) lookup
 		for word in parsed_json:
 			valid_words[word] = true 
-			
 		print("dictionary loaded. clean words: ", valid_words.size())
 	else:
-		printerr("dictionary parsing error. ensure 'clean_dictionary.json' is a clean array.")
+		printerr("dictionary parsing error.")
 
 func init_deck() -> void:
-	# build the initial deck based on letter_config counts
 	deck.clear()
 	for char in letter_config.keys():
 		var count = letter_config[char]["count"]
@@ -58,15 +62,34 @@ func init_deck() -> void:
 	print("deck initialized and shuffled.")
 
 func get_hand(count: int) -> Array[String]:
-	var hand = []
+	var hand: Array[String] = []
 	for _i in range(count):
 		if deck.is_empty():
-			# refill deck from discard or reshuffle (future feature)
-			break
-		# draw a random card and remove it from the deck
+			break 
 		var char = deck.pop_at(randi() % deck.size())
 		hand.append(char)
 	return hand
 
 func is_word_valid(word: String) -> bool:
 	return valid_words.has(word)
+
+# --- progression functions ---
+
+func get_current_quota() -> int:
+	# formula: base quota * stage
+	return round_config[current_round_index]["base_quota"] * current_stage
+
+func get_round_info() -> Dictionary:
+	return round_config[current_round_index]
+
+func complete_round_success(_score_achieved: int):
+	# add reward
+	var reward = round_config[current_round_index]["reward"]
+	current_money += reward
+	print("round won! money: ", current_money)
+
+func advance_progression():
+	current_round_index += 1
+	if current_round_index > 2:
+		current_round_index = 0
+		current_stage += 1 # ante up

@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7304muk3t0pr"]
+
+[ext_resource type="Script" uid="uid://d2jqriky5di6d" path="res://scenes/stage_map.gd" id="1_8twu8"]
+[ext_resource type="Texture2D" uid="uid://dvca3o6klemfc" path="res://assets/ui_flat/01_Flat_Theme/Sprites/UI_Flat_Frame03a.png" id="2_k6agf"]
+[ext_resource type="FontFile" uid="uid://cn8cvwvgbr7ti" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_fkogl"]
+[ext_resource type="Theme" uid="uid://yvt4ru5e6cfv" path="res://assets/resources/button.tres" id="4_sq61v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8su5p"]
+texture = ExtResource("2_k6agf")
+
+[node name="StageMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8twu8")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8su5p")
+
+[node name="InfoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_fkogl")
+theme_override_font_sizes/font_size = 50
+text = "Ante 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 150.0
+offset_right = 870.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_fkogl")
+theme_override_font_sizes/font_size = 25
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="SmallBlindBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(175, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_sq61v")
+text = "Small"
+
+[node name="BigBlindBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(175, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_sq61v")
+text = "Big"
+
+[node name="BossBlindBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(175, 150)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_sq61v")
+text = "Boss
+"
+
+[connection signal="pressed" from="HBoxContainer/SmallBlindBtn" to="." method="_on_round_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BigBlindBtn" to="." method="_on_round_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BossBlindBtn" to="." method="_on_round_button_pressed"]
