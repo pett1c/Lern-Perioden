@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqam6grgju7k4"]
+[gd_scene load_steps=21 format=3 uid="uid://cqam6grgju7k4"]
 
 [ext_resource type="Script" uid="uid://dtbe5krk4kunp" path="res://scenes/round.gd" id="1_3gnes"]
 [ext_resource type="FontFile" uid="uid://cn8cvwvgbr7ti" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_3gnes"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bpqkc8utyuh0d" path="res://assets/bars/04.png" id="3_b0w8h"]
 [ext_resource type="Texture2D" uid="uid://c1stma0e3p210" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/Spritesheets/ENTER.png" id="5_b0w8h"]
 [ext_resource type="Texture2D" uid="uid://cb7mfb8h227qv" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/Spritesheets/BACKSPACE.png" id="6_b1bvr"]
+[ext_resource type="Texture2D" uid="uid://4qbfq3lb5swh" path="res://assets/keyboard/SimpleKeys/Jumbo/Dark/Spritesheets/TABALTERNATIVE.png" id="7_snxki"]
 [ext_resource type="Theme" uid="uid://yvt4ru5e6cfv" path="res://assets/resources/button.tres" id="7_unjed"]
+[ext_resource type="Script" uid="uid://cp3ceks57g8j8" path="res://scripts/pause_menu.gd" id="8_vxv1r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b1bvr"]
 texture = ExtResource("2_b0w8h")
@@ -39,7 +41,20 @@ region = Rect2(54, 0, 51, 21)
 atlas = ExtResource("6_b1bvr")
 region = Rect2(105, 0, 54, 21)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6yuj"]
+atlas = ExtResource("7_snxki")
+region = Rect2(0, 0, 34, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5kuw"]
+atlas = ExtResource("7_snxki")
+region = Rect2(34, 0, 31, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7h1o"]
+atlas = ExtResource("7_snxki")
+region = Rect2(65, 0, 34, 21)
+
 [node name="Round" type="Control"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,7 +127,21 @@ text = "300"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MovesLabel" type="Label" parent="MainLayout/LeftPanel"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainLayout/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="MovesLabel" type="Label" parent="MainLayout/LeftPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_3gnes")
+theme_override_font_sizes/font_size = 26
+text = "5/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiscardsLabel" type="Label" parent="MainLayout/LeftPanel/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_3gnes")
@@ -195,6 +224,14 @@ texture_pressed = SubResource("AtlasTexture_eri0w")
 texture_hover = SubResource("AtlasTexture_ojwvf")
 stretch_mode = 0
 
+[node name="ShuffleButton" type="TextureButton" parent="MainLayout/RightSide/HandArea/Actions"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_g6yuj")
+texture_pressed = SubResource("AtlasTexture_p5kuw")
+texture_hover = SubResource("AtlasTexture_h7h1o")
+stretch_mode = 0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="WinPopup" type="Control" parent="CanvasLayer"]
@@ -205,6 +242,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/WinPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78039217)
 
 [node name="Panel" type="Panel" parent="CanvasLayer/WinPopup"]
 layout_mode = 1
@@ -217,13 +263,23 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinPopup/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -43.0
+offset_right = 120.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="CanvasLayer/WinPopup/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_3gnes")
 theme_override_font_sizes/font_size = 24
 text = "Round Won!"
@@ -232,12 +288,13 @@ vertical_alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="CanvasLayer/WinPopup/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_3gnes")
 theme_override_font_sizes/font_size = 24
 text = "Reward: $5"
 
 [node name="ShopButton" type="Button" parent="CanvasLayer/WinPopup/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_unjed")
@@ -251,6 +308,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOverPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78039217)
 
 [node name="Panel" type="Panel" parent="CanvasLayer/GameOverPopup"]
 layout_mode = 1
@@ -267,13 +333,23 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPopup/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -29.0
+offset_right = 135.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="CanvasLayer/GameOverPopup/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_3gnes")
 theme_override_font_sizes/font_size = 24
 text = "GAME OVER"
@@ -281,12 +357,76 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MenuButton" type="Button" parent="CanvasLayer/GameOverPopup/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_unjed")
-text = "Main Menu"
+text = "Main
+Menu"
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_vxv1r")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78039217)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_3gnes")
+theme_override_font_sizes/font_size = 24
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("7_unjed")
+text = "Resume"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("7_unjed")
+text = "Main
+Menu"
 
 [connection signal="pressed" from="MainLayout/RightSide/HandArea/Actions/SubmitButton" to="." method="_on_submit_pressed"]
 [connection signal="pressed" from="MainLayout/RightSide/HandArea/Actions/DiscardButton" to="." method="_on_discard_pressed"]
+[connection signal="pressed" from="MainLayout/RightSide/HandArea/Actions/ShuffleButton" to="." method="_on_shuffle_pressed"]
 [connection signal="pressed" from="CanvasLayer/WinPopup/Panel/VBoxContainer/ShopButton" to="." method="_on_win_popup_shop_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/Panel/VBoxContainer/MenuButton" to="." method="_on_game_over_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/MenuButton" to="CanvasLayer/PauseMenu" method="_on_exit_pressed"]

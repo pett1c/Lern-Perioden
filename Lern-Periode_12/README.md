@@ -3,7 +3,8 @@
 
 ## fertiges Projekt
 
-...
+Gibt es noch nicht :P
+Lern-Periode 13 anschauen!
 
 ## Grobe Beschreibung
 
@@ -135,16 +136,16 @@ Ausfall, da wir an der BBB ganzen Tag sein werden.
 
 ## 19.12
 tbd am 12.12
-- [] 
+- [x] Hinzufügen einer "Shuffle"-Funktion: Ein Button, der die Buchstaben auf der Hand kostenlos neu sortiert, um dem Spieler zu helfen, Wörter schneller zu erkennen.
 
 —
 
-- [] 
-- [] 
-- [] 
+- [x] Implementierung eines Pausenmenüs, um das Gameplay jederzeit unterbrechen zu können.
+- [x] Überarbeitung des Scorings (Balancing): Umstellung auf ein System aus Basiswerten ("Chips") und Multiplikatoren ("Mult") (wie in Balatro). Zudem werden seltene Buchstaben nun stärker belohnt, um die Schwierigkeit fairer zu gestalten.
+- [x] Anpassung der Discard-Logik: Das Abwerfen von Karten (Discard) verbraucht nun keine "Hände" (Versuche) mehr, sondern greift auf einen eigenen Zähler zu (z.B. 5 Discards und 10 Hände separat).
 
-...
+Heute war ein äusserst produktiver Tag: Ich habe die Überarbeitung des Basis-Gameplays abgeschlossen, da ich beim Testen festgestellt habe, dass einige Funktionen dringend fehlen (insbesondere die Pause- und Shuffle-Tasten). Ausserdem habe ich nach ein paar Spielrunden festgestellt, dass es wirklich schwierig ist, Wörter zu bilden, und dass man dafür auch noch wenig Punkte bekommt – deshalb habe ich beschlossen, das Punktesystem ein wenig zu überarbeiten und es dem von Balatro (mit Multiplikator) anzunähern, und schliesslich habe ich Discards von Hands getrennt. Leider habe ich es nicht geschafft, das Projekt während dieser Lernperiode vollständig umzusetzen, aber ich werde die Entwicklung im nächsten Semester fortsetzen und hoffe, es endlich fertigstellen zu können.
 
 ## Reflexion
 
-...
+Dieses Projekt hat natürlich mehr Zeit in Anspruch genommen als erwartet, daher werde ich es in der nächsten Lernperiode weiterentwickeln. Momentan hat das Spiel schon ein grundlegendes Gameplay, aber leider ein ziemlich unschönes Design, da ich mich noch mit Godot auskenne und nur Assets verwende, ohne alles selbst zu zeichnen. In der nächsten Lern-Periode hoffe ich, alles Grundlegende umsetzen zu können, d. h. beispielsweise die Musik und weniger wichtige Dinge für das Projekt werde ich vielleicht nicht schaffen.
