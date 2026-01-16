@@ -16,36 +16,31 @@ Heute habe ich mir die [Aiogram-Dokumentation](https://docs.aiogram.dev/en/v3.24
 
 ## 16.01
 
-- [] Environment Setup: Übertragung von Variablen, die in .env versteckt sein müssen + Installation von PostgreSQL und anderen Bibliotheken
+- [x] Environment Setup: Übertragung von Variablen, die in .env versteckt sein müssen + Installation von PostgreSQL und anderen Bibliotheken
 
 —
 
-- [] Echo-Logic: Den Bot lehren, nicht nur auf Befehle, sondern auch auf einfache Nachrichten zu reagieren
-- [] Economics Menu: Eine Funktion erstellen, die eine neue Tastatur mit Tasten zeichnet, und diese an eine Taste im Hauptmenü binden
-- [] Error Handling: try-except, um Netzwerkfehler zu behandeln und nützliche Meldungen in der Konsole auszugeben.
+- [x] Echo-Logic: Den Bot lehren, nicht nur auf Befehle, sondern auch auf einfache Nachrichten zu reagieren
+- [x] Economics Menu: Eine Funktion erstellen, die eine neue Tastatur mit Tasten zeichnet, und diese an eine Taste im Hauptmenü binden
+- [x] Error Handling: try-except, um Netzwerkfehler zu behandeln und nützliche Meldungen in der Konsole auszugeben.
 
-...
+Heute habe ich meine Kenntnisse über die Grundlagen von Aiogram weiter vertieft und parallel dazu alles beschrieben, was ich in einem echten Bot umsetzen muss.
 
 ## 23.01
 
-- [] ...
+- [] FSM-Implementierung: Umsetzung von „Werbung versenden” mit Hilfe von aiogram.fsm
 
 —
 
-- [] ...
-- [] ...
-- [] ...
+- [] Admin-Filter Logik: benutzerdefinierter Filter, der die Benutzer-ID mit ADMIN_ID in .env abgleicht
+- [] Datenbank: Implementierung der Gutschrift und Abbuchung von „Münzen“
+- [] API-Anbindung (AI Mode): Anschluss der kostenlosen API von Openrouter
+- [] Logging: vollständige Protokollierung der Benutzeraktionen + Statistiken
 
 ...
 
 ## 30.01
 
-- [] ...
-
-—
-
-- [] ...
-- [] ...
-- [] ...
+tutorial
 
 ...
