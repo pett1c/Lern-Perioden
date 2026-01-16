@@ -1,12 +1,25 @@
 import asyncio
 import logging
+import os
+import sys
+
+from dotenv import load_dotenv
+
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import CommandStart
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-# token, later to be transferred to .env
-TOKEN = "token_here"
+# load .env
+load_dotenv()
+
+# safely get bot token from .env
+TOKEN = os.getenv("BOT_TOKEN")
+
+# check if token is available
+if not TOKEN:
+    print("Error: BOT_TOKEN is not set in environment variables.")
+    sys.exit(1) 
 
 logging.basicConfig(level=logging.INFO)
 
